@@ -5,8 +5,31 @@
     <body>
         <h2>{{ text_string }}</h2>
         <h2>{{ text_string_2 }}</h2>
+
+        {% for i in web_map_list %}
+            <h3>{{ i }}</h3>
+        {% endfor %}
+
+        <div id="demo">
+            <h2>Let AJAX change this text</h2>
+            <button type="button" onclick="loadDoc()">Change Content</button>
+        </div>
+        <script>
+        function loadDoc() {
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("demo").innerHTML =
+              this.responseText;
+            }
+          };
+          xhttp.open("GET", "kill_house", true);
+          xhttp.send();
+        }
+        </script>       
+
         <form method="POST">
-            <input name="text">
+            <input name="text" value='input'>
             <input type="submit" value="Submit">
         </form>
     </body>
